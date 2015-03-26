@@ -1,5 +1,5 @@
 //
-// Written By Andrew Mead
+// Written By Andrew Mead, forked and modified by Francois Hill
 // github.com/andrewjmead
 //
 'use strict';
@@ -31,6 +31,8 @@ module.exports = function (grunt) {
      */
     Tags.prototype.processOptions = function (options) {
         var processedOptions = {};
+
+        processedOptions.keepOriginalPath = options.keepOriginalPath !== undefined ? options.keepOriginalPath : false;
 
         processedOptions.scriptTemplate = options.scriptTemplate || '<script type="text/javascript" src="{{ path }}"></script>';
         processedOptions.linkTemplate = options.linkTemplate || '<link rel="stylesheet" type="text/css" href="{{ path }}"/>';
@@ -88,7 +90,7 @@ module.exports = function (grunt) {
 
         srcFiles.forEach(function (srcFile) {
             // calculate the src files path relative to destination path
-            var relativePath = normalizePaths(path.relative(filePath, srcFile));
+            var relativePath = that.options.keepOriginalPath ? srcFile : normalizePaths(path.relative(filePath, srcFile));
             tagsText += that.options.indent + that.generateTag(relativePath);
         });
 

@@ -1,10 +1,10 @@
-# grunt-script-link-tags [![Build Status](https://travis-ci.org/andrewjmead/grunt-script-link-tags.png)](https://travis-ci.org/andrewjmead/grunt-script-link-tags)
+# grunt-script-link-tags-fhill [![Build Status](https://travis-ci.org/andrewjmead/grunt-script-link-tags-fhill.png)](https://travis-ci.org/andrewjmead/grunt-script-link-tags-fhill)
 
-> Auto-generate `<script>` and `<link>` tags for your HTML files.
+> Auto-generate `<script>` and `<link>` tags for your HTML files. This plugin was originally forked from https://github.com/andrewjmead/grunt-script-link-tags-fhill
 
 ## Community
 
-If you have any problems setting up or using `grunt-script-link-tags`, open an issue. I would be happy to help.
+If you have any problems setting up or using `grunt-script-link-tags-fhill`, open an issue. I would be happy to help.
 
 **This is an active repository** that takes user suggestions, feeback and pull requests seriously. Happy grunting!
 
@@ -13,11 +13,11 @@ This plugin requires Grunt `~0.4.0`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
-	npm install grunt-script-link-tags --save-dev
+	npm install grunt-script-link-tags-fhill --save-dev
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
-	grunt.loadNpmTasks('grunt-script-link-tags');
+	grunt.loadNpmTasks('grunt-script-link-tags-fhill');
 
 ## The "tags" task
 
@@ -28,6 +28,7 @@ In your project's Gruntfile, add a section named `tags` to the data object passe
 		tags: {
 		    build: {
 		        options: {
+		        	keepOriginalPath: true,
 			        scriptTemplate: '<script src="{{ path }}"></script>',
 					linkTemplate: '<link href="{{ path }}"/>',
 		            openTag: '<!-- start template tags -->',
@@ -45,11 +46,19 @@ In your project's Gruntfile, add a section named `tags` to the data object passe
 
 ### Options
 
+#### options.keepOriginalPath
+
+Type: `Bool`
+
+Default value: `false`
+
+If you want to keep the original path from the source files make this `true`. Otherwise it will be relative to the html file specified.
+
 #### options.scriptTemplate
 
 Type: `String`
 
-Default value: `<script type="text/javascript" src="{{ path }}"></script>`
+Default value: `<script src="{{ path }}"></script>`
 
 If a matched file has a `.js` extension, it will compile the `options.scriptTemplate` template with the file path.
 
@@ -57,7 +66,7 @@ If a matched file has a `.js` extension, it will compile the `options.scriptTemp
 
 Type: `String`
 
-Default value: `<link rel="stylesheet" type="text/css" href="{{ path }}"/>`
+Default value: `<link href="{{ path }}"/>`
 
 If a matched file has a `.css` extension, it will compile the `options.linkTemplate` template with the file path.
 

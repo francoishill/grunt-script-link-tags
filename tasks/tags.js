@@ -1,5 +1,5 @@
 //
-// Written By Andrew Mead, forked and modified by Francois Hill
+// Written By Andrew Mead
 // github.com/andrewjmead
 //
 'use strict';
